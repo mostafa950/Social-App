@@ -107,7 +107,7 @@ Widget textButton({
   String? text,
   double fontSize = 16,
 }) {
-  return TextButton(onPressed: onPressed, child: Text(text!.toUpperCase() , style: TextStyle(
+  return TextButton(onPressed: onPressed, child : Text(text!.toUpperCase() , style: TextStyle(
     fontSize: fontSize,
   ),));
 }

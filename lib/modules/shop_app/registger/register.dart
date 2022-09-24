@@ -7,8 +7,6 @@ import 'package:shop_app/shared/components/components.dart';
 import 'package:shop_app/shared/components/constacne.dart';
 import 'package:shop_app/shared/network/local.dart';
 
-
-
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
@@ -186,6 +184,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
         },
       ),
     );
-
   }
 }

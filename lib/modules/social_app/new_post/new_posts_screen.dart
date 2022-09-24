@@ -31,10 +31,10 @@ class NewPostScreen extends StatelessWidget {
                   if (cubit.postImage == null &&
                       _formKey.currentState!.validate()) {
                     cubit.createNewPost(
-                        dateTime: timeNow.toString(),
-                        text: textController.text);
-                  } else if (
-                      cubit.postImage != null) {
+                      dateTime: timeNow.toString(),
+                      text: textController.text,
+                    );
+                  } else if (cubit.postImage != null) {
                     cubit.uploadPostImage(
                       text: textController.text,
                       dateTime: timeNow.toString(),
@@ -168,7 +168,8 @@ class NewPostScreen extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {},
-                          child: Row(
+
+                          child:  Row(
                             children: [
                               Text(
                                 '#Tags',

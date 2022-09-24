@@ -13,8 +13,6 @@ class PostModel {
     this.postImage,
     this.uId,
     this.imageProfile,
-
-
   });
 
   PostModel.fromJson(Map<String , dynamic >? json) {

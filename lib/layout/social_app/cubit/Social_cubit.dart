@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shop_app/layout/social_app/cubit/social_state.dart';
@@ -88,7 +87,12 @@ class SocialCubit extends Cubit<SocialStates> {
         .putFile(imageProfile!)
         .then((value) {
       value.ref.getDownloadURL().then((value) {
-        updateUserData(name: name, phone: phone, bio: bio, profile: value);
+        updateUserData(
+          name: name,
+          phone: phone,
+          bio: bio,
+          profile: value,
+        );
         print(value);
         emit(SocialUploadImageProfileSuccessState());
       }).catchError((error) {
@@ -123,7 +127,12 @@ class SocialCubit extends Cubit<SocialStates> {
         .putFile(imageCover!)
         .then((value) {
       value.ref.getDownloadURL().then((value) {
-        updateUserData(name: name, phone: phone, bio: bio, cover: value);
+        updateUserData(
+          name: name,
+          phone: phone,
+          bio: bio,
+          cover: value,
+        );
         print(value);
         emit(SocialUploadImageCoverSuccessState());
       }).catchError((error) {
