@@ -29,8 +29,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RegisterCubit(),
-      child: BlocConsumer<RegisterCubit, RegisterState>(
+      create: (context) => ShopRegisterCubit(),
+      child: BlocConsumer<ShopRegisterCubit, RegisterState>(
         listener: (context, state) {
           if(state is RegisterSuccessState){
             if (state.shopUserDataModel.status!){
@@ -38,7 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 showToast(message: state.shopUserDataModel.message!, state: ToastStates.success);
                 navigateToFinish(context, ShopLayout());
               } );
-              token = RegisterCubit.get(context).registerModel!.data!.token;
+              token = ShopRegisterCubit.get(context).registerModel!.data!.token;
             }
             else
             {
@@ -47,7 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           }
         },
         builder: (context, state) {
-          RegisterCubit cubit = RegisterCubit.get(context);
+          ShopRegisterCubit cubit = ShopRegisterCubit.get(context);
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -158,7 +158,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             onTap: () {
                               print("State is ${state.toString()}");
                               if (_keyForm.currentState!.validate()) {
-                                RegisterCubit.get(context).userRegister(
+                                ShopRegisterCubit.get(context).userRegister(
                                   email: emailController.text,
                                   password: passwordController.text,
                                   name: nameController.text,

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layout/social_app/social_layout.dart';
 import 'package:shop_app/modules/social_app/feeds/feeds_screen.dart';
-import 'package:shop_app/modules/social_app/social_login/cubit/login_cubit.dart';
-import 'package:shop_app/modules/social_app/social_login/cubit/login_state.dart';
-import 'package:shop_app/modules/social_app/social_register/cubit/register_state.dart';
+import 'package:shop_app/modules/social_app/social_login/cubit/social_login_cubit.dart';
+import 'package:shop_app/modules/social_app/social_login/cubit/social_login_state.dart';
+import 'package:shop_app/modules/social_app/social_register/cubit/social_register_state.dart';
 import 'package:shop_app/modules/social_app/social_register/social_register_screen.dart';
 import 'package:shop_app/shared/components/components.dart';
 import 'package:shop_app/shared/network/local.dart';
@@ -75,60 +75,67 @@ class _SocialLoginScreenState extends State<SocialLoginScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        defaultTextFormedFailed(
-                          hintText: 'Your email address',
-                          controller: emailController,
-                          prefixIcon: Icons.email,
-                          type: TextInputType.emailAddress,
-                          validate: (String? value) {
-                            if (value!.isEmpty) {
-                              return 'This field is required';
-                            } else
-                              return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        defaultTextFormedFailed(
-                          type: null,
-                          hintText: 'Enter your password',
-                          controller: passwordController,
-                          prefixIcon: Icons.lock,
-                          isSecure: SocialLoginCubit.get(context).isSecure,
-                          sufPressed: () {
-                            SocialLoginCubit.get(context)
-                                .changePasswordVisibility();
-                          },
-                          suffixIcon: SocialLoginCubit.get(context).fabIcon,
-                          validate: (String? value) {
-                            if (value!.isEmpty) {
-                              return 'This field is required';
-                            } else
-                              return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        conditionalBuilder(
-                          condition: state is! SocialLoginLoadingState,
-                          builder: inputButton(
-                            text: 'login',
-                            color: Colors.blue,
-                            onTap: () {
-                              print("State is ${state.toString()}");
-                              if (_keyForm.currentState!.validate())
-                              {
-                                cubit.userSocialLogin(
-                                  email: emailController.text,
-                                  password: passwordController.text,
-                                );
-                              }
+                        Container(
+                          child: defaultTextFormedFailed(
+                            hintText: 'Your email address',
+                            controller: emailController,
+                            prefixIcon: Icons.email,
+                            type: TextInputType.emailAddress,
+                            validate: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'This field is required';
+                              } else
+                                return null;
                             },
                           ),
-                          fallback: Center(
-                            child: CircularProgressIndicator(),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          child: defaultTextFormedFailed(
+                            type: null,
+                            hintText: 'Enter your password',
+                            controller: passwordController,
+                            prefixIcon: Icons.lock,
+                            isSecure: SocialLoginCubit.get(context).isSecure,
+                            sufPressed: () {
+                              SocialLoginCubit.get(context)
+                                  .changePasswordVisibility();
+                            },
+                            suffixIcon: SocialLoginCubit.get(context).fabIcon,
+                            validate: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'This field is required';
+                              } else
+                                return null;
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          child: conditionalBuilder(
+                            condition: state is! SocialLoginLoadingState,
+                            builder: inputButton(
+                              text: 'login',
+                              color: Colors.blue,
+                              onTap: () {
+                                print("State is ${state.toString()}");
+                                if (_keyForm.currentState!.validate())
+                                {
+                                  cubit.userSocialLogin(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                    context: context,
+                                  );
+                                }
+                              },
+                            ),
+                            fallback: Center(
+                              child: CircularProgressIndicator(),
+                            ),
                           ),
                         ),
                         SizedBox(

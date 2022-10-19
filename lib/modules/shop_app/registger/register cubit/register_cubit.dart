@@ -7,10 +7,10 @@ import 'package:shop_app/shared/network/end%20points.dart';
 import 'package:shop_app/shared/network/remote.dart';
 
 
-class RegisterCubit extends Cubit<RegisterState> {
-  RegisterCubit() : super(RegisterInitialState());
+class ShopRegisterCubit extends Cubit<RegisterState> {
+  ShopRegisterCubit() : super(RegisterInitialState());
 
-  static RegisterCubit get(context) => BlocProvider.of(context);
+  static ShopRegisterCubit get(context) => BlocProvider.of(context);
   ShopUserDataModel? registerModel;
   void userRegister({
     String? email,

@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/layout/social_app/cubit/Social_cubit.dart';
 import 'package:shop_app/models/social_app_model/social_user_model.dart';
-import 'package:shop_app/modules/social_app/social_register/cubit/register_state.dart';
+import 'package:shop_app/modules/social_app/social_register/cubit/social_register_state.dart';
 
 class SocialRegisterCubit extends Cubit<SocialRegisterState> {
   SocialRegisterCubit() : super(SocialRegisterInitialState());
@@ -13,6 +14,7 @@ class SocialRegisterCubit extends Cubit<SocialRegisterState> {
   void userSocialRegister({
     required String email,
     required String password,
+    required context,
     String? name,
     String? phone,
   }) {
@@ -32,6 +34,7 @@ class SocialRegisterCubit extends Cubit<SocialRegisterState> {
       );
       print(value.user!.email);
       print(value.user!.uid);
+      SocialCubit.get(context).getUserDataSocial();
     }).catchError((error) {
       emit(SocialRegisterErrorState(error.toString()));
     });

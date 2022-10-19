@@ -17,9 +17,10 @@ import 'package:shop_app/shared/network/end%20points.dart';
 import 'package:shop_app/shared/network/local.dart';
 import 'package:shop_app/shared/network/remote.dart';
 import 'package:shop_app/shared/styles/bloc_observer.dart';
-
 import 'layout/shop_app/shop_layout.dart';
-import 'modules/social_app/social_login/login_screen.dart';
+import 'modules/social_app/social_login/cubit/social_login_cubit.dart';
+import 'modules/social_app/social_login/social_login_screen.dart';
+import 'modules/social_app/social_register/cubit/social_register_cubit.dart';
 import 'shared/components/constacne.dart';
 
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -74,7 +75,7 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
   Bloc.observer = MyBlocObserver();
-  DioHelper.dioInitial();
+  //DioHelper.dioInitial();
   runApp(MyApp(widget));
 }
 // https://app.getpostman.com/join-team?invite_code=23559ed437c2a02c947d9a07dadd60f4
@@ -98,7 +99,9 @@ class MyApp extends StatelessWidget {
             ..getUserData(),
         ),
         BlocProvider(create: (context) => ShopLoginCubit()),
-        BlocProvider(create: (context) => RegisterCubit()),
+        BlocProvider(create: (context) => ShopRegisterCubit()),
+        BlocProvider(create: (context) => SocialLoginCubit()),
+        BlocProvider(create: (context) => SocialRegisterCubit()),
         BlocProvider(
           create: (context) => SocialCubit()
             ..getUserDataSocial()
@@ -111,6 +114,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             home: widget,
+            title: 'social app',
           );
         },
       ),

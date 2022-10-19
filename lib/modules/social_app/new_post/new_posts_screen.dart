@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_app/layout/social_app/cubit/Social_cubit.dart';
 import 'package:shop_app/layout/social_app/cubit/social_state.dart';
 import 'package:shop_app/modules/social_app/feeds/feeds_screen.dart';
-import 'package:shop_app/modules/social_app/social_login/login_screen.dart';
+import 'package:shop_app/modules/social_app/social_login/social_login_screen.dart';
 import 'package:shop_app/shared/components/components.dart';
 import 'package:shop_app/shared/styles/icons_broken.dart';
 

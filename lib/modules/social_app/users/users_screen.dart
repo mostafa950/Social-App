@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shop_app/modules/social_app/social_login/login_screen.dart';
+import 'package:shop_app/modules/social_app/social_login/social_login_screen.dart';
 import 'package:shop_app/shared/components/components.dart';
 
 class UsersScreen extends StatelessWidget {

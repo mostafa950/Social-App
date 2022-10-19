@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/modules/social_app/social_login/cubit/login_state.dart';
+import 'package:shop_app/modules/social_app/social_login/cubit/social_login_state.dart';
 import 'package:shop_app/shared/network/local.dart';
+import '../../../../layout/social_app/cubit/Social_cubit.dart';
 
 class SocialLoginCubit extends Cubit<SocialLoginState> {
   SocialLoginCubit() : super(SocialLoginInitialState());
@@ -12,6 +13,7 @@ class SocialLoginCubit extends Cubit<SocialLoginState> {
   void userSocialLogin({
     required String email,
     required String password,
+    required context,
   }) {
     emit(SocialLoginLoadingState());
     FirebaseAuth.instance
@@ -22,6 +24,7 @@ class SocialLoginCubit extends Cubit<SocialLoginState> {
         .then((value) {
       print(value.user!.email);
       print(value.user!.uid);
+      SocialCubit.get(context).getUserDataSocial();
       emit(SocialLoginSuccessState(value.user!.uid));
     }).catchError((error) {
       print('error founded in user login social mostafa ${error.toString()}');

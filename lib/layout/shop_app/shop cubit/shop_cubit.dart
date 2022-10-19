@@ -17,7 +17,7 @@ import '../../../shared/network/end points.dart';
 
 class ShopCubit extends Cubit<ShopStates> {
   ShopCubit() : super(InitialStates());
-
+  
   static ShopCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;

@@ -19,7 +19,6 @@ class SocialUserModel {
     this.cover,
     this.bio,
     this.isEmailVerified,
-
   });
 
   SocialUserModel.fromJson(Map<String , dynamic >? json) {
